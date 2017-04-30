@@ -1,19 +1,9 @@
-import pandas as pd
 from datetime import datetime
-
 import time
-import numpy as np
 import random as rand
-import matplotlib.pyplot as plt
-from bokeh.plotting import figure, output_file, show
-from bokeh.models import DatetimeTickFormatter
-from bokeh.models import HoverTool
-import math
 
 
 def gen_liter(data):
-    # df.loc[(df['date'] == 1), 'liters'] = np.random.randint(0,100)
-    num = 0
     if data == 1:
         num = rand.randint(rand.randint(80, 100), rand.randint(190, 210))
     if data == 2:
@@ -42,8 +32,6 @@ def gen_liter(data):
 
 
 def gen_energy(data):
-    # df.loc[(df['date'] == 1), 'liters'] = np.random.randint(0,100)
-    num = 0
     if data == 1:
         num = rand.randint(500, 1000)
     if data == 2:
@@ -73,11 +61,6 @@ def gen_energy(data):
 
 def convert_todatetime(data):
     my_date = datetime.strptime(str(data), "%m")
-    return my_date.strftime("%m")  # 23 Dec, 2011
-
-
-def convert_todatetime2(data):
-    my_date = datetime.strptime(str(data), "%m")
     return my_date.strftime("2017-%m-01")
 
 
@@ -87,52 +70,3 @@ def convert_totimestamp(data):
 
     unixtime = time.mktime(d.timetuple())
     return unixtime
-
-
-df = pd.read_csv('Data/randmonth.csv', header=0, names=['date'])
-
-date = pd.date_range(start='1-01-17', end='12-01-17', freq='MS')
-df['liter'] = df['date'].apply(gen_liter)
-# df['energy'] = df['date'].apply(gen_energy)
-df['datetime'] = df['date'].apply(convert_todatetime2)
-df.set_index(df['datetime'], inplace=True)
-df['timestamp'] = df['datetime'].apply(convert_totimestamp)
-print(df)
-df_liter = pd.DataFrame({'liter': df['liter'], 'date': df['date'], 'datetime': df['datetime'],
-                         'timestamp': df['timestamp']}, columns=['liter', 'date', 'month', 'timestamp'])
-# df_energy = pd.DataFrame({'energy': df['energy'], 'date': df['date'], 'month': df['month']}, columns=['energy', 'date', 'month'])
-df_liter.sort_values('date', inplace=True)
-# df_energy.sort_values('date', inplace=True)
-
-df_liter_grouped = df_liter.groupby('date').mean()
-print(df_liter_grouped)
-# df_energy_grouped = df_energy.groupby('date').mean()
-df_liter_grouped['datetime'] = date
-
-# df_liter_grouped.set_index(['datetime'])
-# df_liter_grouped['Month'] = df_liter_grouped['datetime'].apply(lambda x: x.strftime('%b'))
-print(df_liter_grouped)
-
-output_file("line.html")
-
-p = figure(plot_width=1000, plot_height=400, title="Water usage L/kg/y")
-
-# add a circle renderer with a size, color, and alpha
-df['timestamp'] = df['timestamp'].apply(lambda x:(x*1000))
-df_liter_grouped['timestamp'] = df_liter_grouped['timestamp'].apply(lambda x: (x*1000))
-print(df.timestamp[0])
-print(df_liter_grouped)
-p.circle(df['timestamp'], df['liter'], size=20, color="navy", alpha=0.5)
-p.line(df_liter_grouped['timestamp'], df_liter_grouped['liter'])
-
-p.xaxis[0].formatter = DatetimeTickFormatter(months="%b")
-
-p.xaxis.axis_label = "Month"
-p.yaxis.axis_label = "L/kg"
-
-# show the results
-show(p)
-# plt.show()
-
-# print(df)
-# gen_data(df)
