@@ -3,6 +3,7 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.models import DatetimeTickFormatter
 from bokeh.models import HoverTool, BoxSelectTool
 from bokeh.embed import components
+import numpy as np
 
 from data_generator import convert_todatetime, convert_totimestamp, gen_liter
 
@@ -25,21 +26,26 @@ def get_tags(filename):
     df['timestamp'] = df['timestamp'].apply(lambda x: (x * 1000))
     df_liter_grouped['timestamp'] = df_liter_grouped['timestamp'].apply(lambda x: (x * 1000))
 
+    TOOLS = ['box_zoom', 'box_select', 'crosshair', 'resize', 'reset']
 
-    TOOLS = [HoverTool(),'box_zoom','box_select','crosshair','resize','reset']
-    p = figure(plot_width=1100, plot_height=500, title="Water usage, Liters Per Kilo Produce",tools=TOOLS)
-    p.circle(df['timestamp'], df['liter'], size=20, color="navy", alpha=0.5)
+    colors = [
+        "#%02x%02x%02x" % (int(r), 50, 150) for r in df['liter']/10
+    ]
+    p = figure(plot_width=1100, plot_height=500, title="Water usage, Liters Per Kilo Produce", tools=TOOLS)
+    cr = p.circle(df['timestamp'], df['liter'], size=20, color=colors, alpha=0.5, hover_fill_color="firebrick",
+             hover_alpha=0.3, hover_line_color="white")
+
+    p.add_tools(HoverTool(tooltips=None, renderers=[cr], mode='hline'))
     p.line(df_liter_grouped['timestamp'], df_liter_grouped['liter'], line_width=2)
     p.xaxis[0].formatter = DatetimeTickFormatter(months="%b")
 
     p.xaxis.axis_label = "Month"
     p.yaxis.axis_label = "L/kg"
     script_div = components(p)
-    # show(p)
+    show(p)
 
 
     return script_div
-
 
 
 if __name__ == "__main__":
