@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def get_roster(filepath):
-    """Returns dictionary with format {<id1>:['<name1>',<crew#1>], <id2>:['<name2>',<crew#2>], ...}  
+    """Returns dictionary with format {<id1>:['<name1>',<crew#1>], <id2>:['<name2>',<crew#2>], ...}   
     roster_dict[35851][0] gets the name
     roster_dict[35851][1] gets the crew 
     """
