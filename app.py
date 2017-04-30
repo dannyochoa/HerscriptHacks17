@@ -1,7 +1,11 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
+from roster import get_roster
+
+people = get_roster("Data/roster.csv")
 
 app = Flask(__name__, template_folder='template')
+entered_id = ""
 
 @app.route('/')
 def login():
@@ -9,20 +13,21 @@ def login():
     
 @app.route('/', methods = ['POST'])
 def logged_process():
+    global entered_id
     entered_id = request.form['id']
-    file = open("workerId.txt", "r") 
-    worker_id_list = file.readlines()
-    file.close()
+    entered_name = request.form['name']
     file = open("secretaryId.txt", "r")
     secretary_id_list = file.readlines()
     file.close()
     if (request.form['submit'] == "login"):
-        for id_num in secretary_id_list:
-            if(entered_id + '\n' == id_num):
-                return redirect(url_for('secretaryHomePage'))
-        for id_num in worker_id_list:
-            if(entered_id + '\n' == id_num):
-                return redirect(url_for('workerPage'))
+        if(entered_name == people[int(entered_id)][0]):
+            return redirect(url_for('workerPage'))
+        else:
+            for id_num in secretary_id_list:
+                if(entered_id + '\n' == id_num):
+                    return redirect(url_for('secretaryHomePage'))
+                else:
+                    return redirect(url_for('logged_process'))
     if (request.form['submit'] == "info"):
         return redirect(url_for('information'))
         
@@ -61,7 +66,7 @@ def secretary():
 
 @app.route('/worker')
 def workerPage():
-    return render_template('workerPage.html')
+    return render_template('workerPage.html', worker_id = entered_id, worker_name = people[int(entered_id)][0], worker_crew = people[int(entered_id)][1])
     
 @app.route('/worker', methods=['POST'])
 def workerInput():

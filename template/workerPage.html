@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<title>AgHub</title>
 <!-- Latest compiled and minified CSS -->
 <head>
     
@@ -30,36 +31,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
+<body background="static/fields.jpg">
 
 <div class="w3-container">
 
-  <div class="w3-bar w3-black">
-    <button class="w3-bar-item w3-button tablink w3-red" onclick="actionTab(event,'info')">Worker Info</button>
+  <div class="w3-bar w3-green">
+    <button class="w3-bar-item w3-button tablink w3-white" onclick="actionTab(event,'info')">Worker Info</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'location')">Today's Work Location</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'other')">other</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'comments')">comments</button>
     
   </div>
   
-<div id="info" class="w3-container w3-border city w3-container w3-green w3-center" style="padding:200px 50px">
-<div class="w3-container w3-green w3-center" style="padding:50px 90px">
+<div id="info" class="w3-container w3-border city w3-container w3-center" style="padding:170px 50px">
+<div class="w3-container w3-center" style="padding:30px 90px">
 <style>
 h1 {
 font-family: "Helvetica";
 text-align: center;
-text-decoration: underline;
 font-size: 60px;
+color: white;
+}
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: green;
+    clear: left;
+    text-align: center;
 }
 h2 {
 font-family: "Helvetica";
 font-size: 40px;
 text-align: center;
+color: white;
 }
 </style>
-  <h1>Worker Name</h1>
-  <h2>ID #: 09130214</h2>
-  <h2>Crew: 0</h2>
+  <h1>Thanks for signing in: {{worker_name}}</h1>
+  <h2>ID: {{worker_id}}</h2>
+  <h2>Crew Number: {{worker_crew}}</h2>
 
 </div>
 
@@ -82,7 +91,7 @@ text-align: center;
 </div>
 
  <div id="other" class="w3-container w3-border city w3-white w3-container w3-center" style="display:none">
-    <div class="w3-white w3-container w3-center" style="padding: 15px 90px">
+    <div class="w3-white w3-container w3-center" style="padding:20px 50px">
     	<style>
         	h5{
             text-align: left;
@@ -99,18 +108,18 @@ text-align: center;
     or will display "No Issue" if there is no issue.</h6>
 	</div>
     <!-- leader comment -->
-	<div class="w3-white w3-container w3-center" style="padding: 15px 90px">
+	<div class="w3-white w3-container w3-center" style="padding: 15px 50px">
 
       <h5>Crew Leader Comment:</h5>
       <h6 class="w3-padding-32">Good job out there today!</h6>
 </div>
 </div>
 <div id="comments" class="w3-container w3-border city" style="display:none">     
-	<div class="w3-section" style="padding: 15px 90px">
+	<div class="w3-section" style="padding:100px 50px">
         <form name = "loginform" class="w3-container" action="/worker" method = "post"> 
         <h3>Leave A comment, Question, or Concern</h3>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Type Here" name="comment" required>
-        <button class="w3-btn-block w3-blue w3-section w3-padding" type="submit" name = "submit" value = "login">Upload</button>
+        <button class="w3-btn-block w3-green w3-section w3-padding" type="submit" name = "submit" value = "login">Upload</button>
         </form>
 	</div>
 </div>
@@ -126,12 +135,12 @@ function actionTab(evt, cityName) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      tablinks[i].className = tablinks[i].className.replace(" w3-white", "");
   }
   document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
+  evt.currentTarget.className += " w3-white";
 }
 </script>
-
+<footer>AgHub</footer>
 </body>
 </html>
