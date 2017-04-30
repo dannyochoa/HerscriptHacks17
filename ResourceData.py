@@ -1,9 +1,8 @@
 import pandas as pd
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import DatetimeTickFormatter
-from bokeh.models import HoverTool, BoxSelectTool
+from bokeh.models import HoverTool
 from bokeh.embed import components
-import numpy as np
 
 from data_generator import convert_todatetime, convert_totimestamp, gen_liter
 

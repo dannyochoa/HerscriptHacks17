@@ -1,21 +1,9 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 from roster import get_roster, write_to
-from bokeh.resources import CDN
-from bokeh.plotting import figure, output_file, show
-from bokeh.embed import autoload_static
-from bokeh.embed import components
 from ResourceData import get_tags
-from bokeh.embed import components
 from bokeh.resources import INLINE
-from bokeh.util.string import encode_utf8
 from map import get_heatmap
-
-# output_file("line.html")
-
-# show(plot)
-# js, tag = autoload_static(plot, CDN, "./herscriptHacks/HerscriptHacks17/jss.js")
-# 
 
 people = get_roster("Data/roster.csv")
 
