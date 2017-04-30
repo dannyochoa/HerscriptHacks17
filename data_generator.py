@@ -109,12 +109,6 @@ print(df_liter_grouped)
 # p.circle(df['month'], df['liter'], size=20, color="navy", alpha=0.5)
 p.line(df_liter_grouped['datetime'], df_liter_grouped['liter'])
 
-p.xaxis[0].formatter=DatetimeTickFormatter(
-        hours=["%B"],
-        days=["%B"],
-        months=["%B"],
-        years=["%B"],
-    )
 
 p.xaxis.axis_label = "Month"
 p.yaxis.axis_label = "L/kg"
