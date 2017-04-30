@@ -42,7 +42,6 @@ def get_tags(filename):
     p.xaxis.axis_label = "Month"
     p.yaxis.axis_label = "L/kg"
     script_div = components(p)
-    show(p)
 
 
     return script_div
