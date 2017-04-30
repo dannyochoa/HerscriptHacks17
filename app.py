@@ -9,6 +9,7 @@ from ResourceData import get_tags
 from bokeh.embed import components
 from bokeh.resources import INLINE
 from bokeh.util.string import encode_utf8
+from map import get_heatmap
 
 # output_file("line.html")
 
@@ -72,6 +73,7 @@ def secretaryHomePage():
     css_resources = INLINE.render_css()
 
     script, div = get_tags("Data/randmonth.csv")
+    script2, div2 = get_heatmap()
 
     # return render_template('line_test.html', script=script, div=div)
 
@@ -82,7 +84,7 @@ def secretaryHomePage():
                            comments_to_enter2=comments_entered[1], comments_to_enter3=comments_entered[2],
                            comments_to_enter4=comments_entered[3], comments_to_enter5=comments_entered[4],
                            plot_script=script,
-                           plot_div=div,
+                           plot_div=div, plot_script2=script2, plot_div2 = div2,
                            js_resources=js_resources,
                            css_resources=css_resources)
 
