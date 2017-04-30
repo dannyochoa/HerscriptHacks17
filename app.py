@@ -1,20 +1,9 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 from roster import get_roster, write_to
-from bokeh.resources import CDN
-from bokeh.plotting import figure, output_file, show
-from bokeh.embed import autoload_static
-from bokeh.embed import components
 from ResourceData import get_tags
-from bokeh.embed import components
 from bokeh.resources import INLINE
-from bokeh.util.string import encode_utf8
-
-# output_file("line.html")
-
-# show(plot)
-# js, tag = autoload_static(plot, CDN, "./herscriptHacks/HerscriptHacks17/jss.js")
-# 
+from map import get_heatmap
 
 people = get_roster("Data/roster.csv")
 
@@ -72,10 +61,15 @@ def secretaryHomePage():
     css_resources = INLINE.render_css()
 
     script, div = get_tags("Data/randmonth.csv")
+    script2, div2 = get_heatmap()
 
-    # return render_template('line_test.html', script=script, div=div)
-
-    return render_template('secretary.html',  plot_script=script, plot_div=div, js_resources=js_resources,
+    file = open("comments.txt", 'r')
+    comments_entered = file.readlines()
+    file.close()
+    return render_template('secretary.html',
+                           plot_script=script,
+                           plot_div=div, plot_script2=script2, plot_div2 = div2,
+                           js_resources=js_resources,
                            css_resources=css_resources)
 
 

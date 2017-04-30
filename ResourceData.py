@@ -1,9 +1,8 @@
 import pandas as pd
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import DatetimeTickFormatter
-from bokeh.models import HoverTool, BoxSelectTool
+from bokeh.models import HoverTool
 from bokeh.embed import components
-import numpy as np
 
 from data_generator import convert_todatetime, convert_totimestamp, gen_liter
 
@@ -29,7 +28,7 @@ def get_tags(filename):
     TOOLS = ['box_zoom', 'box_select', 'crosshair', 'resize', 'reset']
 
     colors = [
-        "#%02x%02x%02x" % (int(r), 50, 150) for r in df['liter']/10
+        "#%02x%02x%02x" % (int(r), int(g), 0) for r,g in zip((df['liter']-100)*.8,0.2*(df['liter']+250))
     ]
     p = figure(plot_width=1100, plot_height=500, title="Water usage, Liters Per Kilo Produce", tools=TOOLS)
     cr = p.circle(df['timestamp'], df['liter'], size=20, color=colors, alpha=0.5, hover_fill_color="firebrick",
@@ -42,7 +41,6 @@ def get_tags(filename):
     p.xaxis.axis_label = "Month"
     p.yaxis.axis_label = "L/kg"
     script_div = components(p)
-    show(p)
 
 
     return script_div
