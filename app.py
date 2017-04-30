@@ -1,27 +1,34 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder='templates')
 
 
-@app.route('/login/<int:num>')
-def login():
-    return render_template('login.html')
+# @app.route('/', methods=['POST'])
+# def login():
+#      if request.methods=='POST':
+#         if request.form['button'] == 'info':
+#          return redirect(url_for('info'))
+#      return render_template('index.html')
 
+@app.route('/info', methods=['POST'])
+def info():
+   
+    return render_template('index.html')
 
 # process
-@app.route('/login', methods=['POST'])
-def login_process():
-    # get login parameters
-    name = request.form['name']
-    password = request.form['password']
-    # do login processing
-    return redirect(url_for('logged_in', name=name))
+# @app.route('/index', methods=['POST'])
+# def login_process():
+#     # get login parameters
+#     name = request.form['Email']
+#     password = request.form['Password']
+#     # do login processing
+#     return redirect(url_for('index', name=name))
 
 
-@app.route('/logged_in')
-def logged_in():
-    return render_template('logged_in.html', name=request.args.get('name'))
+# @app.route('/logged_in')
+# def logged_in():
+#     return render_template('logged_in.html', name=request.args.get('Email'))
 
 
 if __name__ == '__main__':
