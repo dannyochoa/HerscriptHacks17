@@ -27,7 +27,7 @@ def get_tags(filename):
 
 
     TOOLS = [HoverTool(),'box_zoom','box_select','crosshair','resize','reset']
-    p = figure(plot_width=1000, plot_height=400, title="Water usage, Liters Per Kilo Produce",tools=TOOLS)
+    p = figure(plot_width=1100, plot_height=500, title="Water usage, Liters Per Kilo Produce",tools=TOOLS)
     p.circle(df['timestamp'], df['liter'], size=20, color="navy", alpha=0.5)
     p.line(df_liter_grouped['timestamp'], df_liter_grouped['liter'], line_width=2)
     p.xaxis[0].formatter = DatetimeTickFormatter(months="%b")
