@@ -5,12 +5,13 @@
     <title>AgHub</title>
     <meta charset="utf-8">
 </head>
-    
+<body>
 <style>
 body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
       color: #818181;
+      background-color: green;
   }
   h2 {
       font-size: 24px;
@@ -27,7 +28,7 @@ body {
       margin-bottom: 30px;
   }  
   .jumbotron {
-      background-color: #f4511e;
+      background-color: green;
       color: #fff;
       padding: 100px 25px;
       font-family: Montserrat, sans-serif;
@@ -43,7 +44,7 @@ body {
       font-size: 50px;
   }
   .logo {
-      color: #f4511e;
+      color: green;
       font-size: 200px;
   }
   .thumbnail {
@@ -75,7 +76,7 @@ body {
       box-shadow: 5px 0px 40px rgba(0,0,0, .2);
   }
   .panel-footer .btn:hover {
-      border: 1px solid #f4511e;
+      border: 2px solid #f4511e;
       background-color: #fff !important;
       color: #f4511e;
   }
@@ -100,15 +101,10 @@ body {
       font-size: 14px;
   }
   .panel-footer .btn {
-      margin: 15px 0;
-      background-color: #f4511e;
-      color: #fff;
+      margin: 30px 0;
+      background-color: blue;
+      color: green;
   }
-  footer .glyphicon {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #f4511e;
-}
 .slideanim {visibility:hidden;}
 .slide {
     /* The name of the animation */
@@ -119,6 +115,21 @@ body {
     -webkit-animation-duration: 1s;
     /* Make the element visible */
     visibility: visible; 
+}
+.btn-danger {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: purple;
+}
+.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:first-child>.btn-group:not(:first-child)>.btn, .input-group-btn:first-child>.btn:not(:first-child), .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn, .input-group-btn:last-child>.dropdown-toggle {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position:relative;
+    top:70px;
+    right:170px;
+    /* background-color: white; */
 }
 
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
@@ -150,6 +161,7 @@ body {
     .btn-lg {
         width: 100%;
         margin-bottom: 35px;
+        margin-left: 35px;
     }
   }
   @media screen and (max-width: 480px) {
@@ -160,190 +172,34 @@ body {
 </style>
 
 <div class="jumbotron text-center">
-  <h1>AgHub</h1> 
-  <p>We specialize in blablabla</p> 
-  <form class="form-inline">
+  <style>
+    h1{
+      position: relative;
+      right: 27px;
+    }
+    p{
+      position: relative;
+      right: 25px;
+    }
+  </style>
+  <h1><img src="static/newlogo.png" height="100" width="100" align="middle">AgHub<img src="static/newlogo.png" height="100" width="100" align="middle"></h1> 
+  <p>Helping employers reach their employees</p> 
+  <form class="form-inline" action = "/" method = "post">
     <div class="input-group">
-      <1>
+      <input type="id" class="form-control" size="12" placeholder="ID" name = "id"required>
+      <input type="id" class="form-control" size="12" placeholder="Name" name = "name">
       <div class="input-group-btn">
-        <button type="button" class="btn btn-danger">Sign In</button>
+         <button class="btn btn-danger" type="submit" name = "submit" value = "login">Sign In</button>
       </div>
     </div>
   </form>
 </div>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>About AgHub</h2>
-      <h4>Lorem ipsum..</h4> 
-      <p>Lorem ipsum..</p>
-      <form>
-        <button type="button" name="button" class="btn btn-default btn-lg" formaction="index.html" value="info">Info</button>
-      </form>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-signal logo"></span>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-globe logo"></span> 
-    </div>
-    <div class="col-sm-8">
-      <h2>Our Values</h2>
-      <h4><strong>MISSION:</strong> Our mission lorem ipsum..</h4> 
-      <p><strong>VISION:</strong> Our vision Lorem ipsum..</p>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid text-center">
-  <h2>SERVICES</h2>
-  <h4>What we offer</h4>
-  <br>
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-off"></span>
-      <h4>POWER</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-heart"></span>
-      <h4>LOVE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-lock"></span>
-      <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    </div>
-    <br><br>
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-leaf"></span>
-      <h4>GREEN</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-certificate"></span>
-      <h4>CERTIFIED</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-wrench"></span>
-      <h4>HARD WORK</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid bg-grey">
-  <h2 class="text-center">CONTACT</h2>
-  <div class="row">
-    <div class="col-sm-5">
-      <p>Contact us and we'll get back to you within 24 hours.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span> Watsonville,CA </p>
-      <p><span class="glyphicon glyphicon-phone"></span> +1 (831)515-8245</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> myemail@gmail.com</p> 
-    </div>
-    <div class="col-sm-7">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
-        </div>
-      </div> 
-    </div>
-  </div>
-</div>
-<body>
-    <nav class="navbar navbar-default navbar-inverse" role="navigation">
-  <div class="container-fluid">
-     Brand and toggle get grouped for better mobile display 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">AgHub</a>
-    </div>
-
-     Collect the nav links, forms, and other content for toggling 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Info</a></li>
-        <li><a href="#">Collaborators</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-         <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-default">Sign In</button>
-                </form>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 </body>
 
-<body>
-<div id="googleMap" style="width:100%;height:700px;"></div>
 
-<script>
-function myMap() {
-var mapProp= {
-    center:new google.maps.LatLng(36.9102,-121.7569),
-    zoom:11,
-};
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-</script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFMB4XwqNJfoyEhVFtrwR5CqfyxDMcOEc&callback=myMap"></script>
 
-</body>
-<footer class="container-fluid text-center">
-  <a href="#myPage" title="To Top">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a>
-  <p>Go back to Top </a></p> 
-</footer>
+
 <script>
 $(document).ready(function(){
   // Add smooth scrolling to all links in navbar + footer link
