@@ -31,6 +31,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+<style type="text/css">
+  a:link {
+    color: white;
+    background-color: transparent;
+    font-size: 16px;
+    position: relative;
+    text-decoration: underline;
+    top:5.5px;
+    left: 15px;
+  }
+  a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: purple;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+</style>
 <body background="static/fields.jpg">
 
 <div class="w3-container">
@@ -40,11 +61,12 @@
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'location')">Today's Work Location</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'other')">Today's Info</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'comments')">Comments</button>
-    <button class="w3-bar-itme w3-button tablink" onclick="actionTab(event, 'index')">Log Out</button>
+    
+    <a href="/" target="self">To Home Page</a>
   </div>
   
 <div id="info" class="w3-container city w3-container w3-center" style="padding:140px 50px">
-<div class="w3-container w3-center" style="padding:50px 90px">
+<div class="w3-container w3-center" style="padding:100px 90px">
 <style>
 h1 {
 font-family: "Helvetica";
@@ -65,10 +87,16 @@ font-size: 40px;
 text-align: center;
 color: white;
 }
+p{
+  font-size: 25px;
+  color: white;
+}
 </style>
   <h1>Thanks for signing in: {{worker_name}}</h1>
+  <p>Gracias por registrarte: {{worker_name}}</p>
   <h2>ID: {{worker_id}}</h2>
   <h2>Crew Number: {{worker_crew}}</h2>
+  <p>Numero de grupo: {{worker_crew}}</p>
 
 </div>
 
@@ -77,39 +105,55 @@ color: white;
 
 <div id="location" class="w3-container city" style="display:none">
 
-<div class=" w3-container w3-center" style="padding: 50px 90px">
+<div class=" w3-container w3-center" style="padding: 70px 90px">
 		<style>
-        	h3,h4{
+        	h3,p1,h4{
             text-align: left;
             }
         </style>
       <h3>Today's Work Location:</h3>
+      <!--<p1>Lugar de trabajo de hoy:</p1>-->
       <h4>Report to this Location -></h4>
+      <!--<p1>Reportase a este lugar -></p1>-->
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1104.7898523667075!2d-121.69728596710374!3d36.65196517311494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1493525246116" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
 
 </div>
 
  <div id="other" class="w3-container city w3-container w3-center" style="display:none">
-    <div class=" w3-container w3-center" style="padding:100px 50px">
+    <div class=" w3-container w3-center" style="padding:170px 50px">
       <div class="w3-row">
   <div class="w3-half w3-container">
+    <style type="text/css">
+      h6{
+        font-size: 45px;
+        text-decoration: underline;
+        text-align: left,left;
+      }
+      p1{
+        font-size: 20px;
+        text-align: left;
+        color: white;
+      }
+    </style>
     
-    <h1 style = "color : white">Quality Assurance Issue:</h1>
+    <h6 style = "color : white">Quality Assurance Issue:</h6>
+    <p1>Problema de garantía de calidad:</p1>
     <h3 style = "color : white" class="w3-padding-32"> {{qa_entered}} </h3>
     
-      <h1 style = "color : white" >Crew Leader Comment:</h1>
+      <h6 style = "color : white" >Crew Leader Comment:</h6>
+      <p1>Comentario del Líder de Equipo:</p1>
       <h3 style = "color : white" class="w3-padding-32"> {{ comCrew }} </h3>
       
   </div>
   
   <div class="w3-half w3-container">
     	<div class="w3-container w3-center">
-    	  <h3 style = "color : white">Crew 1:   {{c1}} </h3><br></br>
+    	  <h3 style = "color : white">Crew 1: plot  {{c1}} </h3><br></br>
     	  
-    	  <h3 style = "color : white">Crew 2:   {{c2}} </h3><br></br>
+    	  <h3 style = "color : white">Crew 2: plot  {{c2}} </h3><br></br>
     	  
-    	  <h3 style = "color : white">Crew 3:   {{c3}} </h3><br></br>
+    	  <h3 style = "color : white">Crew 3: plot  {{c3}} </h3><br></br>
 
 
 </div>
@@ -119,9 +163,18 @@ color: white;
 </div>
 </div>
 <div id="comments" class="w3-container city" style="display:none">     
-	<div class="w3-section" style="padding:220px 50px">
+	<div class="w3-section" style="padding:210px 50px">
+	  <style >
+	    p2{
+	       font-size: 20px;
+	       text-align: right;
+	       color: white;
+	     
+	    }
+	  </style>
         <form name = "loginform" class="w3-container" action="/worker" method = "post"> 
-        <h1 style = "color: white">Leave A comment, Question, or Concern</h1>
+        <h1 style = "color: white">Leave a Comment, Question, or Concern</h1>
+        <p2 style="color: white">Deja un comentario, pregunta o preocupación</p>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Type Here" name="comment" required>
         <button class="w3-btn-block w3-green w3-section w3-padding" type="submit" name = "submit" value = "login">Upload</button>
         </form>
