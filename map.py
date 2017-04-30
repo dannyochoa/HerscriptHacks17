@@ -1,17 +1,12 @@
+
 # Author: Joshua Saavedra
 # Date: 4/29/17
 # Note: Examples are heavily used for this script
 
-import pandas as pd
 import numpy as np
 from bokeh.charts import HeatMap, output_file, show
 from bokeh.layouts import column, gridplot
 
-# This line reads in from a csv file
-#df = pd.read_csv('test.csv')
-
-# The stuff within ths boundry
-############################################################################################
 # Standard size for each data list
 SIZE = 5
 
@@ -21,55 +16,45 @@ def fill_list(stri, the_list = [], *args):
 		the_list.append(stri)
 	return the_list
 
+# This function produces a list filled with random numbers
+def random_data():
+	return np.random.uniform(1, 100, len(list_of_resources))
+
 # These lists are representations of objects, in this instance, fruit
-apples  = []
-bananas = []
-pears   = []
-mangos  = []
+water   = []
+fruits  = []
+veggies = []
+soil    = []
 
-fill_list("apples", apples)
-fill_list("bananas", bananas)
-fill_list("pears", pears)
-fill_list("mangos", mangos)
+# These lines fill the lists
+fill_list("Water", water)
+fill_list("Fruits", fruits)
+fill_list("Vegetables", veggies)
+fill_list("Soil", soil)
 
-fruit_basket = apples + bananas + pears + mangos
-
-# These lists are randomized to simulate data
-data_list = np.random.uniform(1, 10, len(fruit_basket))
+# This line combines all of the lists into one
+list_of_resources = water + fruits + veggies + soil
 
 # List of years
 years = [2009, 2010, 2011, 2012, 2013]
 
 # This line changes the contents of 'year' from int to string
-years = [str(yr) for yr in years]
+years 	  = [str(yr) for yr in years]
 
 # This dictionary was created to  hold our 'data'
-fruits = {'fruit'    : fruit_basket,
-	  'year'     : years*4,
-          'the_data' : data_list}
+statistics = {'resources': list_of_resources,
+	      'year'     : years*4,
+              'data1' 	 : random_data(),
+	      'data2'    : random_data(),
+	      'data3'    : random_data(),
+	      'data4'    : random_data()}
 
-# A data frame is created
-df = pd.DataFrame.from_dict(fruits)
-
-# The columns are reorganized 
-df['temp'] = df['year']
-df['year'] = df['the_data']
-df['the_data'] = df['temp']
-# The 'temp' column is deleted
-del df['temp']
-# The columns are properly renamed
-df.columns = ['fruit', 'year', 'data']
-############################################################################################
-
-# The information is printed
-print(df.index)
-print(df.columns)
-print(df)
-
-# The heatmap is created
-hm = HeatMap(df) #, x=df.name, y=df.iloc[1], values=df.iloc[2], stat=None)
+# The heatmaps are created
+hm01 = HeatMap(statistics, x='resources', y='year', values='data1', stat=None, title="Field 1")
+hm02 = HeatMap(statistics, x='resources', y='year', values='data2', stat=None, title="Field 2")
+hm03 = HeatMap(statistics, x='resources', y='year', values='data3', stat=None, title="Field 3")
+hm04 = HeatMap(statistics, x='resources', y='year', values='data4', stat=None, title="Field 4")
 
 # Output section
-output_file("heatmap.html", title="heatmap.py example")
-show(hm)
-
+output_file("heatmap.html", title="Field Resource Usage")
+show(column(gridplot(hm01, hm02,hm03,hm04, ncols=2, plot_width=500, plot_height=500)))
