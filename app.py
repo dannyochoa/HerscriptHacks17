@@ -16,14 +16,20 @@ def logged_process():
     file = open("secretaryId.txt", "r")
     secretary_id_list = file.readlines()
     file.close()
+    if (request.form['submit'] == "login"):
+        for id_num in secretary_id_list:
+            if(entered_id + '\n' == id_num):
+                return redirect(url_for('secretaryHomePage'))
+        for id_num in worker_id_list:
+            if(entered_id + '\n' == id_num):
+                return redirect(url_for('workerPage'))
+    if (request.form['submit'] == "info"):
+        return redirect(url_for('information'))
+        
+@app.route('/info')
+def info():
+    return render_template('info.html')
     
-    for id_num in secretary_id_list:
-        if(entered_id + '\n' == id_num):
-            return redirect(url_for('secretaryHomePage'))
-    for id_num in worker_id_list:
-        if(entered_id + '\n' == id_num):
-            return redirect(url_for('workerPage'))
-
 @app.route('/secretary')
 def secretaryHomePage():
     file = open("comments.txt", 'r')
@@ -66,7 +72,6 @@ def workerInput():
         file.close()
         return redirect(url_for('workerInput'))
     
-
 
 if __name__ == '__main__':
     app.run(
