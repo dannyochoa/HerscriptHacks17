@@ -10,8 +10,8 @@ people = get_roster("Data/roster.csv")
 app = Flask(__name__, template_folder='template')
 
 entered_id = ""
-QA = "Nothing has been inputed by the secratary Yet"
-crew_comment = "Nothing has been inputed by the secratary Yet"
+QA = "Nothing has been inputed by the secretary Yet"
+crew_comment = "Nothing has been inputed by the secretary Yet"
 crew1 = 8
 crew2 = 3
 crew3 = 1

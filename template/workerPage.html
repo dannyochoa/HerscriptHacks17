@@ -88,10 +88,17 @@ font-size: 40px;
 text-align: center;
 color: white;
 }
+p{
+  font-size: 25px;
+  color: white;
+}
 </style>
   <h1>Thanks for signing in: {{worker_name}}</h1>
   <h2>ID #: {{worker_id}}</h2>
+  <p>Gracias por registrarte: {{worker_name}}</p>
+  <h2>ID: {{worker_id}}</h2>
   <h2>Crew Number: {{worker_crew}}</h2>
+  <p>Numero de grupo: {{worker_crew}}</p>
 
 </div>
 
@@ -102,12 +109,14 @@ color: white;
 
 <div class=" w3-container w3-center" style="padding: 70px 90px">
 		<style>
-        	h3,h4{
+        	h3,p1,h4{
             text-align: left;
             }
         </style>
       <h3>Today's Work Location:</h3>
+      <!--<p1>Lugar de trabajo de hoy:</p1>-->
       <h4>Report to this Location -></h4>
+      <!--<p1>Reportase a este lugar -></p1>-->
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1104.7898523667075!2d-121.69728596710374!3d36.65196517311494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1493525246116" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
 
@@ -121,14 +130,21 @@ color: white;
       h6{
         font-size: 45px;
         text-decoration: underline;
+        text-align: left,left;
+      }
+      p1{
+        font-size: 20px;
         text-align: left;
+        color: white;
       }
     </style>
     <a href="/" target="self">To Home Page</a>
     <h6 style = "color : white">Quality Assurance Issue:</h6>
+    <p1>Problema de garantía de calidad:</p1>
     <h3 style = "color : white" class="w3-padding-32"> {{qa_entered}} </h3>
     
       <h6 style = "color : white" >Crew Leader Comment:</h6>
+      <p1>Comentario del Líder de Equipo:</p1>
       <h3 style = "color : white" class="w3-padding-32"> {{ comCrew }} </h3>
       
   </div>
@@ -150,8 +166,17 @@ color: white;
 </div>
 <div id="comments" class="w3-container city" style="display:none">     
 	<div class="w3-section" style="padding:210px 50px">
+	  <style >
+	    p2{
+	       font-size: 20px;
+	       text-align: right;
+	       color: white;
+	     
+	    }
+	  </style>
         <form name = "loginform" class="w3-container" action="/worker" method = "post"> 
         <h1 style = "color: white">Leave a Comment, Question, or Concern</h1>
+        <p2 style="color: white">Deja un comentario, pregunta o preocupación</p>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Type Here" name="comment" required>
         <button class="w3-btn-block w3-green w3-section w3-padding" type="submit" name = "submit" value = "login">Upload</button>
         </form>
