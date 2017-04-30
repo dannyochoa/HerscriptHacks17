@@ -71,15 +71,7 @@ def secretaryHomePage():
 
     # return render_template('line_test.html', script=script, div=div)
 
-    file = open("comments.txt", 'r')
-    comments_entered = file.readlines()
-    file.close()
-    return render_template('secretary.html', comments_to_enter1=comments_entered[0],
-                           comments_to_enter2=comments_entered[1], comments_to_enter3=comments_entered[2],
-                           comments_to_enter4=comments_entered[3], comments_to_enter5=comments_entered[4],
-                           plot_script=script,
-                           plot_div=div,
-                           js_resources=js_resources,
+    return render_template('secretary.html',  plot_script=script, plot_div=div, js_resources=js_resources,
                            css_resources=css_resources)
 
 
@@ -98,14 +90,14 @@ def secretary():
 def workerPage():
     return render_template('workerPage.html', worker_id=entered_id, worker_name=people[int(entered_id)][0],
                            worker_crew=people[int(entered_id)][1], qa_entered=QA, comCrew=crew_comment, c1=crew1,
-                           c2=crew2, c3=crew3)
+                           c2=crew2, c3=crew3 ,dm = people[int(entered_id)][2])
 
 
 @app.route('/worker', methods=['POST'])
 def workerInput():
     comment = request.form['comment']
     if (request.form['submit'] == "login"):
-        current_comment = people[int(entered_id)][0] + ": " + comment + '\n'
+        current_comment = people[int(entered_id)][0] + " ID Number " + entered_id + ": " + comment + '\n'
         file = open("comments.txt", 'r')
         comment_list = file.readlines()
         file.close()
@@ -115,6 +107,23 @@ def workerInput():
             file.write(com)
         file.close()
         return redirect(url_for('workerInput'))
+
+@app.route('/officeReply')
+def officeReply():
+    file = open("comments.txt", 'r')
+    comments_entered = file.readlines()
+    file.close()
+    return render_template('officeReply.html',  comments_to_enter1=comments_entered[0],
+                           comments_to_enter2=comments_entered[1], comments_to_enter3=comments_entered[2],
+                           comments_to_enter4=comments_entered[3], comments_to_enter5=comments_entered[4])
+    
+@app.route('/officeReply', methods = ['POST'])
+def reply():
+    worker_id = request.form['worker_id']
+    message = request.form['message']
+    people[int(worker_id)][2] = message
+    if (request.form['submit'] == "login"):
+        return redirect(url_for('officeReply'))
 
 
 @app.route('/officeInfo')

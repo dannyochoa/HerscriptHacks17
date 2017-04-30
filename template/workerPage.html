@@ -61,6 +61,7 @@
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'location')">Today's Work Location</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'other')">Today's Info</button>
     <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'comments')">Comments</button>
+    <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'inbox')">Inbox</button>
     
     <a href="/" target="self">To Home Page</a>
   </div>
@@ -89,7 +90,7 @@ color: white;
 }
 </style>
   <h1>Thanks for signing in: {{worker_name}}</h1>
-  <h2>ID: {{worker_id}}</h2>
+  <h2>ID #: {{worker_id}}</h2>
   <h2>Crew Number: {{worker_crew}}</h2>
 
 </div>
@@ -123,7 +124,7 @@ color: white;
         text-align: left;
       }
     </style>
-    
+    <a href="/" target="self">To Home Page</a>
     <h6 style = "color : white">Quality Assurance Issue:</h6>
     <h3 style = "color : white" class="w3-padding-32"> {{qa_entered}} </h3>
     
@@ -154,6 +155,14 @@ color: white;
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Type Here" name="comment" required>
         <button class="w3-btn-block w3-green w3-section w3-padding" type="submit" name = "submit" value = "login">Upload</button>
         </form>
+	</div>
+</div>
+
+<div id="inbox" class="w3-container city" style="display:none">     
+	<div class="w3-section" style="padding:250px 50px">
+        <h1>Message from the Office: </h1><br></br>
+        <h1 style = "color: white"> {{dm}}</p>
+        
 	</div>
 </div>
 
