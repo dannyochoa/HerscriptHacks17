@@ -111,7 +111,7 @@ p = figure(plot_width=1000, plot_height=400, title="Water usage L/kg/y")
 # p.circle(df['date'], df['liter'], size=20, color="navy", alpha=0.5)
 p.line(df_liter_grouped['datetime'], df_liter_grouped['liter'])
 
-p.xaxis[0].formatter = DatetimeTickFormatter(months="%b")
+# p.xaxis[0].formatter = DatetimeTickFormatter(months="%b")
 
 p.xaxis.axis_label = "Month"
 p.yaxis.axis_label = "L/kg"
