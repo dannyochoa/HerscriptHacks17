@@ -43,13 +43,17 @@ def logged_process():
     file = open("secretaryId.txt", "r")
     secretary_id_list = file.readlines()
     file.close()
-    if (request.form['submit'] == "login"):
-        if (entered_id == '1234'):
-            return redirect(url_for('secretaryHomePage'))
-        elif (entered_name == people[int(entered_id)][0]):
-            return redirect(url_for('workerPage'))
-        else:
-            return redirect(url_for('logged_process'))
+    try:
+        if (request.form['submit'] == "login"):
+            if (entered_id == '1234'):
+                return redirect(url_for('secretaryHomePage'))
+            elif (entered_name == people[int(entered_id)][0]):
+                return redirect(url_for('workerPage'))
+            else:
+                return redirect(url_for('logged_process'))
+    except:
+        return redirect(url_for('logged_process'))
+
     if (request.form['submit'] == "info"):
         return redirect(url_for('information'))
 

@@ -15,18 +15,18 @@ def get_roster(filepath):
     return roster_dict
 
 
-def write_to(id, name, crew, filepath):
+def write_to(id, name, crew, message, filepath):
     """Write directly to csv file without overwriting with new file.
     Takes in arguments of type str: 
                 write_to("<id_str>", "<name_str>", <crew_int>, "<filepath_str>")
     example:    write_to("21452", "Daniel Ochoa", 1, "Data/roster.csv")
     """
     with open(filepath, 'a', newline='') as csvfile:
-        # csvfile.write([id,name,crew])
+        # csvfile.write([id,name,crew, message])
         writer = csv.writer(csvfile, delimiter=',')
-        writer.writerow([id, name, crew])
+        writer.writerow([id, name, crew, message])
 
 
 if __name__ == "__main__":
     roster_dict2 = get_roster("Data/roster.csv")
-    # write_to("21452", "Daniel Ochoa", 1, "Data/roster.csv")
+    write_to("21452", "Daniel Ochoa", 1,"Message", "Data/roster.csv")
