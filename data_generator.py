@@ -89,9 +89,12 @@ print(df_liter)
 df_liter_grouped = df_liter.groupby('date').mean()
 print(df_liter_grouped)
 df_energy_grouped = df_energy.groupby('date').mean()
-df_liter_grouped['datetime'] = date
+# df_liter_grouped['datetime'] = date
+df_liter_grouped['datetime'] = df_liter_grouped.index
+df_liter_grouped['datetime'] = df_liter_grouped['datetime'].apply(convert_todatetime)
+
 # df_liter_grouped.set_index(['datetime'])
-df_liter_grouped['Month'] = df_liter_grouped['datetime'].apply(lambda x: x.strftime('%b'))
+# df_liter_grouped['Month'] = df_liter_grouped['datetime'].apply(lambda x: x.strftime('%b'))
 print(df_liter_grouped)
 
 
@@ -108,7 +111,7 @@ p = figure(plot_width=1000, plot_height=400, title="Water usage L/kg/y")
 # add a circle renderer with a size, color, and alpha
 
 
-# p.circle(df['date'], df['liter'], size=20, color="navy", alpha=0.5)
+p.circle(df['datetime'], df['liter'], size=20, color="navy", alpha=0.5)
 p.line(df_liter_grouped['datetime'], df_liter_grouped['liter'])
 
 p.xaxis[0].formatter = DatetimeTickFormatter(months="%b")
