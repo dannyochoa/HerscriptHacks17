@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<!-- Latest compiled and minified CSS -->
+<head>
+    
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>worker info</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<div class="w3-container">
+
+  <div class="w3-bar w3-black">
+    <button class="w3-bar-item w3-button tablink w3-red" onclick="actionTab(event,'info')">Worker Info</button>
+    <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'location')">Today's Work Location</button>
+    <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'other')">other</button>
+    <button class="w3-bar-item w3-button tablink" onclick="actionTab(event,'comments')">comments</button>
+    
+  </div>
+  
+<div id="info" class="w3-container w3-border city w3-container w3-green w3-center" style="padding:200px 50px">
+<div class="w3-container w3-green w3-center" style="padding:50px 90px">
+<style>
+h1 {
+font-family: "Helvetica";
+text-align: center;
+text-decoration: underline;
+font-size: 60px;
+}
+h2 {
+font-family: "Helvetica";
+font-size: 40px;
+text-align: center;
+}
+</style>
+  <h1>Worker Name</h1>
+  <h2>ID #: 09130214</h2>
+  <h2>Crew: 0</h2>
+
+</div>
+
+</div>
+
+
+<div id="location" class="w3-container w3-border city" style="display:none">
+
+<div class="w3-white w3-container w3-center" style="padding: 15px 90px">
+		<style>
+        	h3,h4{
+            text-align: left;
+            }
+        </style>
+      <h3>Today's Work Location:</h3>
+      <h4>Report to this field: 'link to field on google'</h4>
+</div>
+
+</div>
+
+ <div id="other" class="w3-container w3-border city w3-white w3-container w3-center" style="display:none">
+    <div class="w3-white w3-container w3-center" style="padding: 15px 90px">
+    	<style>
+        	h5{
+            text-align: left;
+            margin-bottom: -25px;
+            text-decoration: underline;
+            }
+            h6{
+            text-align: left;
+            margin-bottom: -25px;
+            }
+        </style>
+    <h5>Quality Assurance Issue:</h5>
+    <h6 class="w3-padding-32">Here the employer will notitfy the workers of the current quality assurance issue
+    or will display "No Issue" if there is no issue.</h6>
+	</div>
+    <!-- leader comment -->
+	<div class="w3-white w3-container w3-center" style="padding: 15px 90px">
+
+      <h5>Crew Leader Comment:</h5>
+      <h6 class="w3-padding-32">Good job out there today!</h6>
+</div>
+</div>
+<div id="comments" class="w3-container w3-border city" style="display:none">     
+	<div class="w3-section" style="padding: 15px 90px">
+        <form name = "loginform" class="w3-container" action="/worker" method = "post"> 
+        <h3>Leave A comment, Question, or Concern</h3>
+        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Type Here" name="comment" required>
+        <button class="w3-btn-block w3-blue w3-section w3-padding" type="submit" name = "submit" value = "login">Upload</button>
+        </form>
+	</div>
+</div>
+
+
+
+<script>
+function actionTab(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+</body>
+</html>

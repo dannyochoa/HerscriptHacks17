@@ -3,25 +3,69 @@ from flask import Flask, render_template, request, url_for, redirect
 
 app = Flask(__name__, template_folder='template')
 
-
-@app.route('/login/<int:num>')
+@app.route('/')
 def login():
-    return render_template('login.html')
+    return render_template('index.html')
+    
+@app.route('/', methods = ['POST'])
+def logged_process():
+    entered_id = request.form['id']
+    file = open("workerId.txt", "r") 
+    worker_id_list = file.readlines()
+    file.close()
+    file = open("secretaryId.txt", "r")
+    secretary_id_list = file.readlines()
+    file.close()
+    
+    for id_num in secretary_id_list:
+        if(entered_id + '\n' == id_num):
+            return redirect(url_for('secretaryHomePage'))
+    for id_num in worker_id_list:
+        if(entered_id + '\n' == id_num):
+            return redirect(url_for('workerPage'))
 
+@app.route('/secretary')
+def secretaryHomePage():
+    file = open("comments.txt", 'r')
+    comments_entered = file.readlines()
+    file.close()
+    return render_template('secretary.html', comments_to_enter1= comments_entered[0],
+    comments_to_enter2= comments_entered[1],comments_to_enter3= comments_entered[2],
+    comments_to_enter4= comments_entered[3],comments_to_enter5= comments_entered[4])
 
 # process
-@app.route('/login', methods=['POST'])
-def login_process():
+@app.route('/secretary', methods=['POST'])
+def secretary():
     # get login parameters
     name = request.form['name']
-    password = request.form['password']
+    crew = request.form['crew']
+    worker_id = request.form['id']
     # do login processing
-    return redirect(url_for('logged_in', name=name))
+    if (request.form['submit'] == "login"):
+        file = open("workersInfo.txt", 'a')
+        file.write(worker_id + '\n')
+        file.write(name + '\n')
+        file.write(crew + '\n')
+        file.close()
+        file = open('workerId.txt', 'a')
+        file.write(worker_id + '\n')
+        file.close()
+        return redirect(url_for('secretary'))
 
 
-@app.route('/logged_in')
-def logged_in():
-    return render_template('logged_in.html', name=request.args.get('name'))
+@app.route('/worker')
+def workerPage():
+    return render_template('workerPage.html')
+    
+@app.route('/worker', methods=['POST'])
+def workerInput():
+    comment = request.form['comment']
+    if (request.form['submit'] == "login"):
+        file = open("comments.txt" , 'a')
+        file.write("<worker id>: " + comment + '\n')
+        file.close()
+        return redirect(url_for('workerInput'))
+    
 
 
 if __name__ == '__main__':
